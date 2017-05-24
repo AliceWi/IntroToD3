@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSV Test</title>
+
+    <!--
+      A code example that parses a CSV string.
+      By Curran Kelleher March 2015
+    -->
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <script>
+
+      // Parses a CSV string into an array of objects.
+      // Similar to d3.csv.parse(), documented at
+      // github.com/mbostock/d3/wiki/CSV#parse
+      function parseCSV(csvString, accessor){
+        
+        // Handle accessor as an optional argument.
+        accessor = accessor || function(d){ return d; };
+        
+        var lines = csvString.split("\n"),
+            columnNames = lines[0].split(","),
+            rows = lines.slice(1);
+        return rows.map(function(row){
+          var entries = row.split(","),
+              rowObject = {};
+          columnNames.forEach(function(columnName, i){
+            rowObject[columnName] = entries[i];
+          });
+          return accessor(rowObject);
+        });
+      } 
+
+      // Fetch the CSV file using AJAX.
+      var irisCSVString = "sepal length,sepal width,petal length,petal width,class\n\
+5.1,3.5,1.4,0.2,Iris-setosa\n\
+4.9,3.0,1.4,0.2,Iris-setosa\n\
+4.7,3.2,1.3,0.2,Iris-setosa\n\
+4.6,3.1,1.5,0.2,Iris-setosa\n\
+5.0,3.6,1.4,0.2,Iris-setosa\n\
+5.4,3.9,1.7,0.4,Iris-setosa";
+
+      // Parse the CSV string into an array of objects.
+      var parsedCSV = parseCSV(irisCSVString, function(rowObject){
+
+        // Parse strings into numbers for numeric columns.
+        rowObject["petal length"] = +rowObject["petal length"];
+        rowObject["petal width"] = +rowObject["petal width"];
+        rowObject["sepal length"] = +rowObject["sepal length"];
+        rowObject["sepal width"] = +rowObject["sepal width"];
+        
+        return rowObject;
+      });
+
+      console.log(parsedCSV);
+
+    </script>
+  </body>
+</html>
