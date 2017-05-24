@@ -194,7 +194,7 @@ app.directive('file', function(){
 
 // Display video from the camera on the video element.
 // Example code from http://www.html5rocks.com/en/tutorials/getusermedia/intro/
-navigator.getUserMedia  = navigator.getUserMedia ||
+/*navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
                           navigator.mozGetUserMedia ||
                           navigator.msGetUserMedia;
@@ -204,4 +204,4 @@ navigator.mediaDevices.getUserMedia({ video: true }, function (localMediaStream)
   video.src = window.URL.createObjectURL(localMediaStream);
 }, function (e) {
   console.log("Error " + e);
-});
+});*/
