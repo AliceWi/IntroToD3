@@ -199,7 +199,7 @@ navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.mozGetUserMedia ||
                           navigator.msGetUserMedia;
 
-navigator.getUserMedia({ video: true }, function (localMediaStream) {
+navigator.mediaDevices.getUserMedia({ video: true }, function (localMediaStream) {
   var video = document.querySelector('video');
   video.src = window.URL.createObjectURL(localMediaStream);
 }, function (e) {
