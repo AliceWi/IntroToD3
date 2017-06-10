@@ -10,8 +10,9 @@
 
 ## Slides and Code
 
-* [Slides]() slides
-* [Example 1]() description
+* [Slides](https://github.com/AliceWi/IntroToD3/tree/gh-pages/presentation)
+* [Example 1](https://github.com/AliceWi/IntroToD3/tree/gh-pages/ExampleSelections) Moving Circles
+* [Example 2](https://github.com/AliceWi/IntroToD3/tree/gh-pages/simpleVacMap) Simple VacMap
 
 ## Tutorials
 
