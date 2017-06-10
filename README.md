@@ -1,6 +1,3 @@
-# IntroToD3
-D3 in a nutshell
-
 ## Keynotes D3
 
 * selections
@@ -19,7 +16,8 @@ D3 in a nutshell
 ## Tutorials
 
 * [How Selections Work](https://bost.ocks.org/mike/selection/)
-* [Let's make a Bar Chart](https://bost.ocks.org/mike/bar/)
+* [Let's Make a Bar Chart](https://bost.ocks.org/mike/bar/)
+* [Let's Make a Map](https://bost.ocks.org/mike/map/)
 * [Command-Line Cartography](https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2c)
 * [Bootstrap](https://www.w3schools.com/bootstrap/)
 
