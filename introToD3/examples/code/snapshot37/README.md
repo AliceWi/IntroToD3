@@ -1,1 +1,0 @@
-Concatenation of number strings

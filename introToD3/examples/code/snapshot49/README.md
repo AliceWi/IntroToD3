@@ -1,3 +1,0 @@
-Parsing CSV data
-
- * using +

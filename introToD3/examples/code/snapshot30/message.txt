@@ -1,1 +1,0 @@
-font fill and stroke

@@ -1,1 +1,0 @@
-Specifying SVG dimensions

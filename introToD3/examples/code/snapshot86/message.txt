@@ -1,1 +1,0 @@
-population as sqrt size
