@@ -32,6 +32,7 @@ D3 in a nutshell
 * [Homepage Dirk Brockmann](http://rocs.hu-berlin.de/) has cool D3 examples
 * [D3 Homepage](www.d3js.org)
 * [D3 API](https://github.com/d3/d3/blob/master/API.md)
+* [TopoJSON](https://github.com/topojson/topojson)
 * [get Bootstrap](getbootstrap.com/)
 * [MapShaper](mapshaper.org/)
 * [JSbin](https://jsbin.com/)
