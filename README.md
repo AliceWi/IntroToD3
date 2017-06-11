@@ -13,8 +13,9 @@
 ## Slides and Code
 
 * [Slides](https://github.com/AliceWi/IntroToD3/tree/gh-pages/presentation)
-* [Example 1](https://github.com/AliceWi/IntroToD3/tree/gh-pages/movingCircles) Moving Circles
-* [Example 2](https://github.com/AliceWi/IntroToD3/tree/gh-pages/simpleVacMap) Simple VacMap
+* [Example 1](https://github.com/AliceWi/IntroToD3/tree/gh-pages/fancyRectangles.html) Fancy Rectangles
+* [Example 2](https://github.com/AliceWi/IntroToD3/tree/gh-pages/updateEnterExit.html) Update, Enter, Exit, Key Functions
+* [Example 3](https://github.com/AliceWi/IntroToD3/tree/gh-pages/simpleVacMap) Simple VacMap
 
 ## Tutorials
 

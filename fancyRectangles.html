@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>D3 Object</title>
+
+<!-- including D3 -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+<!-- including CSS -->
+  <style>
+  </style>
+
+</head>
+<body>
+
+	<script> 
+		// javascript goes here
+
+    var width = 500;
+    var height = 500;
+
+    var data = ["red", "blue", "green", "yellow"];
+
+    var svg = d3.select("body")
+              .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .style("border", "1px solid black");
+
+    var rects = svg.selectAll("rect")
+                  .data(data)
+                .enter() //placeholders
+                .append("rect")
+                  .attr("x", function(d,i){return i*50 +10})
+                  .attr("y", 10)
+                  .attr("width", 50)
+                  .attr("height", 50)
+                  .style("fill", function(d){return d});
+                
+
+
+	</script>
+
+</body>
+</html>
+
+
+
