@@ -10,7 +10,7 @@
 
 ## Data join
 
-![](datajoin.png)
+![](datajoin.jpeg)
 
 ## Slides and Code
 
