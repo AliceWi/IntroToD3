@@ -8,6 +8,10 @@
 * filter, each
 * transitions
 
+## Data join
+
+![](datajoin.png)
+
 ## Slides and Code
 
 * [Slides](https://github.com/AliceWi/IntroToD3/tree/gh-pages/presentation)

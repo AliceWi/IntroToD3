@@ -1,0 +1,34 @@
+<!doctype html> 
+<html> 
+<head> 
+	<meta charset="utf-8"> 
+	<title>Update, Enter, Exit, Keyfunction</title> 
+	<style></style> 
+	<script src="D3lib/d3.v4.min.js"></script>
+</head> 
+<body> 
+
+<script type="text/javascript">
+
+//data join
+var div = d3.select("body")
+  .selectAll("div")
+  .data([4, 8, 15, 16, 23, 42])
+  .enter().append("div")
+    .text(function(d) { return d; });
+
+//update
+console.log(div.data([1, 2, 4, 8, 16, 32], function(d) {return d; }));
+
+div = div.data([1, 2, 4, 8, 16, 32], function(d) {console.log(d); return d; });
+
+//enter
+div.enter().append("div").text(function(d) { return d; });
+
+//exit
+div.exit().remove();
+
+</script>
+
+</body> 
+</html>
