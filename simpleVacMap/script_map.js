@@ -24,11 +24,9 @@ var x = d3.scaleLinear()
     .domain([0, 100])
     .range([0, widthBars]);
 
-var projection = d3.geoAlbers()
-    .rotate([-10.4/180, 51.2/180]);
-
-var path = d3.geoPath() 
-    .projection(projection);
+var colorScale = d3.scaleLinear()
+    .domain([0, 92, 100])
+    .range(["#ff0000","#fffee7", "#3182bd"]);
 
 d3.queue()
     .defer(d3.json, "bl.json")
@@ -37,18 +35,24 @@ d3.queue()
 function showData(error, states) {
     if(error) throw error;
 
-    var states = topojson.feature(states, states.objects.bundesland2012); // with data
+    //While our data can be stored more efficiently in TopoJSON, we must convert back to GeoJSON for display. 
+    var states = topojson.feature(states, states.objects.bundesland2012); // Returns the GeoJSON Feature or FeatureCollection for the specified object in the given topology.
 
 
 // ======= initialization ========
 
-    scale2fit(path.bounds(states));
     pathToValue = "vc_mas1_15m_round";
-
 
 // ======= map ========
 
-    var map = svg.append("g").attr("class","map").attr("transform","translate("+(width/1.3)+","+height/2+")");
+    var projection = d3.geoAlbers() // https://github.com/d3/d3-geo/blob/master/README.md#geoAzimuthalEqualArea
+        .rotate([-10.4/180, 51.2/180])
+        .fitExtent([[0,0],[width,height]], states); // fit to svg container
+
+    var path = d3.geoPath() // path generator, needs GeoJSON
+        .projection(projection);
+
+    var map = svg.append("g").attr("class","map").attr("transform","translate("+(width/4)+",0)");
 
     map.selectAll(".states")
         .data(states.features)
@@ -56,7 +60,7 @@ function showData(error, states) {
         .attr("class", "states")
         .attr("id", function(d) { return d.properties.RKI_NameDE; })
         .attr("d", path)
-        .style("fill", function(d){return color(d.properties.vc_mas1_15m_round)})
+        .style("fill", function(d){return colorScale(d.properties[pathToValue])})
         .style("stroke", "black")
         .on("mouseover", mouseover)
         .on("mouseout", mouseout);
@@ -82,7 +86,7 @@ function showData(error, states) {
         .on("click", function(){
             pathToValue = "vc_mas1_15m_round";
             d3.selectAll(".states").transition().duration(500)
-                .style("fill", function(d){ return color(d.properties[pathToValue])})
+                .style("fill", function(d){ return colorScale(d.properties[pathToValue])})
             makeBarCharts(states.features, pathToValue);
             
     });
@@ -91,7 +95,7 @@ function showData(error, states) {
         .on("click", function(){
             pathToValue = "vc_mas1_24m_round";
             d3.selectAll(".states").transition().duration(500)
-                .style("fill", function(d){ return color(d.properties[pathToValue])})
+                .style("fill", function(d){ return colorScale(d.properties[pathToValue])})
             makeBarCharts(states.features, pathToValue);
             
     });
@@ -100,7 +104,7 @@ function showData(error, states) {
         .on("click", function(){
             pathToValue = "vc_mas2_24m_round";
             d3.selectAll(".states").transition().duration(500)
-                .style("fill", function(d){ return color(d.properties[pathToValue])})
+                .style("fill", function(d){ return colorScale(d.properties[pathToValue])})
             makeBarCharts(states.features, pathToValue);
             
     });
@@ -115,8 +119,13 @@ function showData(error, states) {
 //  ======= helper functions  =======
 
 function makeBarCharts(data, p){
-    //data join 
+    //data join and update
     var bars = barChart.selectAll(".bar").data(data);
+
+    bars
+        .transition().duration(500)
+        .style("fill", function(d){return colorScale(d.properties[p]);})
+        .attr("width", function(d){return x(d.properties[p]);});
 
     //enter
     bars
@@ -128,7 +137,7 @@ function makeBarCharts(data, p){
         .attr("x", 0)
         .attr("y", function(d,i){return i*15;})
         .attr("height", 15)
-        .style("fill", function(d,i){return color(d.properties[p]);})
+        .style("fill", function(d,i){return colorScale(d.properties[p]);})
         .style("stroke", "black")
         .transition().duration(500)
         .attr("width", function(d,i){return x(d.properties[p]);});
@@ -137,12 +146,7 @@ function makeBarCharts(data, p){
     bars
       .exit()
         .remove();
-
-    //update
-    bars
-        .transition().duration(500)
-        .style("fill", function(d){return color(d.properties[p]);})
-        .attr("width", function(d){return x(d.properties[p]);});
+    
 }
 
 function text(){
@@ -151,23 +155,4 @@ function text(){
         .attr("x", 2 )
         .attr("y", function(d,i) { return i*15 +12; })
       .text(function(d){return d.id});
-}
-
-
-function color(value){
-    colorScale = d3.scaleLinear()
-        .domain([0, 92, 100])
-        .range(["#ff0000","#fffee7", "#3182bd"]); 
-    return colorScale(value);
-}
-
-function scale2fit(b) {
-    var w = width;//500
-    var h = height;//700
-    var s0 = projection.scale();
-    var t0 = projection.translate();
-    
-    s = s0 / Math.max((b[1][0] - b[0][0]) / w, (b[1][1] - b[0][1]) / h); //orientiert sich an größter Länge, damit nichts übersteht
-    t = [   - s / s0 * ( (b[1][0] + b[0][0]) / 2  - t0[0]),   - s / s0 * ((b[1][1] + b[0][1]) / 2 - t0[1])]; // falls w>h, dann ist x-Verschiebung 0.5w (und h relativ), ansonsten y-Verschiebung 0.5h (und w relativ)
-    projection.translate(t).scale(s);  
-}
+} 
