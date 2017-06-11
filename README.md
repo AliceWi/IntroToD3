@@ -1,3 +1,5 @@
+![](datajoin.jpeg)
+
 ## Keynotes D3
 
 * selections
@@ -7,10 +9,6 @@
 * event handlers and listeners
 * filter, each
 * transitions
-
-## Data join
-
-![](datajoin.jpeg)
 
 ## Slides and Code
 
