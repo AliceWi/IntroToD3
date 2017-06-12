@@ -47,8 +47,13 @@
 * [D3 Paper](vis.stanford.edu/papers/d3)
 * [D3.express](https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0)
 
+<<<<<<< HEAD
 ![](importantSlides/d3bubbles.jpeg)
 ![](importantSlides/vacmapbubbles.jpeg)
 ![](importantSlides/datajoin.jpeg)
+=======
+![](datajoin.jpeg)
+
+>>>>>>> origin/gh-pages
 
 By Alice Wittig June 2017
