@@ -34,11 +34,11 @@
 ## Usefull links
 
 * [Homepage Dirk Brockmann](http://rocs.hu-berlin.de/) has cool D3 examples
-* [D3 Homepage](www.d3js.org)
+* [D3 Homepage](https://www.d3js.org)
 * [D3 API](https://github.com/d3/d3/blob/master/API.md)
 * [TopoJSON](https://github.com/topojson/topojson)
-* [get Bootstrap](getbootstrap.com/)
-* [MapShaper](mapshaper.org/)
+* [get Bootstrap](https://www.getbootstrap.com/)
+* [MapShaper](https://www.mapshaper.org/)
 * [JSbin](https://jsbin.com/)
 * [Sublime Text 3](https://www.sublimetext.com/)
 
